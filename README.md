@@ -9,6 +9,11 @@ drink ingredients are sold out, for example oat milk at First Hill.
   file has one row per store per ingredient, with quantity on hand, reserved
   quantity and the time the row was last updated.
 - Works out availability for each row as `quantity_on_hand - reserved_quantity`.
+  Reserved units are treated as already committed to orders in flight, so they
+  cannot go to the next customer; counting on-hand alone would show stock that
+  is already promised and let the order service accept orders it cannot fill.
+  This meaning of `reserved_quantity` is an assumption and has not been
+  confirmed with the snapshot's producer.
 - Reports an item as `sold_out` when its availability is 0 or less, and as
   `in_stock` otherwise.
 - Treats any item whose `component_id` contains `milk` as a milk. That covers
