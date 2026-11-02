@@ -9,9 +9,8 @@ from pydantic import BaseModel
 
 from stock_service.snapshot import Snapshot, StockRow
 
-DEFAULT_SNAPSHOT_PATH = Path(
-    "/Users/dhruv/Documents/Store Stock Snapshot, 7 March 2025 06:45.csv"
-)
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_SNAPSHOT_PATH = PROJECT_ROOT / "data" / "Store Stock Snapshot, 7 March 2025 06:45.csv"
 
 
 class ItemStatus(BaseModel):
